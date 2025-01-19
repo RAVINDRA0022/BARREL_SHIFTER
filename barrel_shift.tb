@@ -1,0 +1,27 @@
+`timescale 1ns / 1ps
+
+module tb_barrel_shifter;
+    reg [3:0] in;
+    reg [1:0] shift;
+    reg dir;
+    wire [3:0] out;
+
+    barrel_shifter dut (
+        .in(in),
+        .shift(shift),
+        .dir(dir),
+        .out(out)
+    );
+
+    initial begin
+        in = 4'b0001; shift = 2'b00; dir = 1'b1; #10;
+        in = 4'b0001; shift = 2'b01; dir = 1'b1; #10;
+        in = 4'b0001; shift = 2'b10; dir = 1'b1; #10;
+        in = 4'b0001; shift = 2'b11; dir = 1'b1; #10;
+        in = 4'b1000; shift = 2'b00; dir = 1'b0; #10;
+        in = 4'b1000; shift = 2'b01; dir = 1'b0; #10;
+        in = 4'b1000; shift = 2'b10; dir = 1'b0; #10;
+        in = 4'b1000; shift = 2'b11; dir = 1'b0; #10;
+        $stop;
+    end
+endmodule
